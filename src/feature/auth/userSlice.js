@@ -14,6 +14,19 @@ export const registerUser = createAsyncThunk(
   }
 );
 
+export const loginUser = createAsyncThunk(
+  "user/login",
+  async (userData, thunkAPI) => {
+    try {
+      return await userService.login(userData);
+    } catch (error) {
+      const message =
+        error.response?.data?.error || error.message || "Login failed";
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+
 const getUserFromLocalStorage = localStorage.getItem("user")
   ? JSON.parse(localStorage.getItem("user"))
   : null;
@@ -37,6 +50,10 @@ export const userSlice = createSlice({
       state.isLoading = false;
       state.message = "";
     },
+    logout: (state) => {
+      state.user = null;
+      localStorage.removeItem("token");
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -56,9 +73,25 @@ export const userSlice = createSlice({
         state.isSuccess = false;
         state.message = action.payload || "Registration failed";
         state.createdUser = null;
+      })
+      .addCase(loginUser.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(loginUser.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isError = false;
+        state.isSuccess = true;
+        state.user = action.payload;
+        state.message = "Login successfully";
+      })
+      .addCase(loginUser.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.isSuccess = false;
+        state.message = action.payload || "Login failed";
       });
   },
 });
 
-export const { resetStatus } = userSlice.actions;
+export const { resetStatus, logout } = userSlice.actions;
 export default userSlice.reducer;

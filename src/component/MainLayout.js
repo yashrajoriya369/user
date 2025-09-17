@@ -1,13 +1,22 @@
 import React from "react";
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet, useNavigate } from "react-router-dom";
 import { RxDashboard } from "react-icons/rx";
 import { LuUserRoundPen } from "react-icons/lu";
 import { BsPersonVideo3 } from "react-icons/bs";
 import { LuHistory } from "react-icons/lu";
 import { AiOutlineTeam } from "react-icons/ai";
 import { CiLogout } from "react-icons/ci";
+import { useDispatch } from "react-redux";
+import { logout } from "../feature/auth/userSlice";
 
 const MainLayout = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const handLogout = () => {
+    dispatch(logout());
+    navigate("/");
+  };
   return (
     <div>
       <div className="sidebar">
@@ -51,7 +60,7 @@ const MainLayout = () => {
           </i>{" "}
           Our Team
         </Link>
-        <Link to="/">
+        <Link to="/" onClick={handLogout}>
           <i className="bi bi-box-arrow-right me-2">
             <CiLogout />
           </i>{" "}

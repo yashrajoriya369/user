@@ -1,17 +1,50 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { useFormik } from "formik";
+import * as yup from "yup";
+import { useDispatch, useSelector } from "react-redux";
+import { loginUser, resetStatus } from "../feature/auth/userSlice";
+
+const loginSchema = yup.object({
+  email: yup
+    .string()
+    .email("Please provide a valid email address")
+    .required("Email is required"),
+  password: yup.string().required("Password is required"),
+});
 
 const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [showPassword, setShowPassword] = useState(false);
+  const newUser = useSelector((state) => state.user);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
-  const handleLogin = (e) => {
-    e.preventDefault();
-    navigate("/admin");
-  };
+  const { isLoading, isSuccess, isError, message } = newUser;
 
+  useEffect(() => {
+    if (isSuccess) {
+      alert("Login successfully");
+      navigate("/admin");
+      dispatch(resetStatus());
+    }
+    if (isError) {
+      alert(message || "Login failed");
+      dispatch(resetStatus());
+    }
+  }, [isSuccess, isError, message, navigate, dispatch]);
+
+  const formik = useFormik({
+    enableReinitialize: true,
+    initialValues: {
+      email: "",
+      password: "",
+    },
+    validationSchema: loginSchema,
+    onSubmit: (values) => {
+      dispatch(loginUser(values));
+    },
+  });
+
+  const [showPassword, setShowPassword] = useState(false);
   return (
     <>
       <div className="container">
@@ -24,30 +57,41 @@ const Login = () => {
               <h2>Welcome Back</h2>
               <p>Sign in to continue your interview preparation</p>
             </div>
-            <form onSubmit={handleLogin} className="auth-form">
+            <form onSubmit={formik.handleSubmit} className="auth-form">
               <div className="form-group">
                 <label htmlFor="login-email">Email</label>
                 <input
+                  name="email"
                   type="email"
                   id="login-email"
                   className="form-control"
                   placeholder="Enter your email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
+                  value={formik.values.email}
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
                 />
+                {formik.touched.email && formik.errors.email && (
+                  <div className="error">{formik.errors.email}</div>
+                )}
               </div>
 
               <div className="form-group">
                 <label htmlFor="login-password">Password</label>
                 <div className="password-toggle">
                   <input
+                    name="password"
                     type={showPassword ? "text" : "password"}
                     id="login-password"
                     className="form-control"
                     placeholder="Enter your password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
+                    value={formik.values.password}
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
                   />
+                  {formik.touched.password && formik.errors.password && (
+                    <div className="error">{formik.errors.password}</div>
+                  )}
+
                   <i
                     className={`far ${
                       showPassword ? "fa-eye-slash" : "fa-eye"
@@ -59,11 +103,12 @@ const Login = () => {
               </div>
 
               <button
-                to="/admin"
                 type="submit"
                 className="btn-login"
+                disabled={isLoading || !formik.isValid || !formik.dirty}
               >
-                Login
+              {/* Login */}
+                {isLoading ? "Login..." : "Login"}
               </button>
 
               <div className="auth-footer">
