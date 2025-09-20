@@ -1,75 +1,46 @@
 import React from "react";
+import Card from "../component/Card";
+import Header from "../component/Header";
+import { TbWriting, TbMoodPuzzled } from "react-icons/tb";
+import { RiSpeakLine } from "react-icons/ri";
+import { MdOutlineQuiz } from "react-icons/md";
+import { CgEreader } from "react-icons/cg";
 
 const Dashboard = () => {
   return (
     <div>
-      <h4 className="mb-3">My Interviews</h4>
-      <div className="row g-3">
-        <div className="cards col-md-4">
-          <div className="card-custom card-gray">
-            <h5>Essay</h5>
-            <p>00 lessons</p>
-            <span>0.0%</span>
-          </div>
-        </div>
-        <div className="cards col-md-4">
-          <div className="card-custom card-green">
-            <h5>Speaking</h5>
-            <p>00 lessons</p>
-            <span>0.0%</span>
-          </div>
-        </div>
-        <div className="cards col-md-4">
-          <div className="card-custom card-yellow">
-            <h5>Jumble Parawords</h5>
-            <p>00 lessons</p>
-            <span>0.0%</span>
-          </div>
-        </div>
-        <div className="cards col-md-4">
-          <div className="card-custom card-orange">
-            <h5>Quiz</h5>
-            <p>00 lessons</p>
-            <span>0.0%</span>
-          </div>
-        </div>
-        <div className="cards col-md-4">
-          <div className="card-custom card-blue">
-            <h5>Reading</h5>
-            <p>00 lessons</p>
-            <span>0.0%</span>
-          </div>
-        </div>
-        <div className="cards col-md-4">
-          <div className="card-custom card-pink">
-            <h5>Essay</h5>
-            <p>00 lessons</p>
-            <span>0.0%</span>
-          </div>
-        </div>
-      </div>
-
-      <div className="row mt-4 g-3">
-        <div className="col-md-4">
-          <div className="stats-card text-center">
-            <h5>Statistics</h5>
-            <p>✅ Completed: 0</p>
-            <p>📈 In Progress: 0</p>
-          </div>
-        </div>
-        <div className="col-md-4">
-          <div className="stats-card text-center">
-            <h5>Leaderboard</h5>
-            <p>#0000</p>
-            <button className="btn btn-sm btn-primary">View Rank</button>
-          </div>
-        </div>
-        <div className="col-md-4">
-          <div className="stats-card text-center">
-            <h5>Activity</h5>
-            <p>DAY | WEEK | MONTH</p>
-          </div>
-        </div>
+      <Header title="Dashboard" />
+      <div className="card-section">
+        <Card
+          title="Essay"
+          value="00 Lessons"
+          growth="0.0%"
+          icon={<TbWriting className="card-icon" size={32} />}
+        />
+        <Card
+          title="Speaking"
+          value="00 Lessons"
+          growth="0.0%"
+          icon={<RiSpeakLine className="card-icon" size={32} />}
+        />
+        <Card
+          title="Jumble Parawords"
+          value="00 Lessons"
+          growth="0.0%"
+          icon={<TbMoodPuzzled className="card-icon" size={32} />}
+        />
+        <Card
+          title="Quiz"
+          value="00 Lessons"
+          growth="0.0%"
+          icon={<MdOutlineQuiz className="card-icon" size={32} />}
+        />
+        <Card
+          title="Reading"
+          value="00 Lessons"
+          growth="0.0%"
+          icon={<CgEreader className="card-icon" size={32} />}
+        />
       </div>
     </div>
   );

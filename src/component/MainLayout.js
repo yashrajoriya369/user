@@ -1,73 +1,83 @@
-import React from "react";
+import React, { useState } from "react";
+import { MdOutlineAdminPanelSettings } from "react-icons/md";
 import { Link, Outlet, useNavigate } from "react-router-dom";
-import { RxDashboard } from "react-icons/rx";
-import { LuUserRoundPen } from "react-icons/lu";
-import { BsPersonVideo3 } from "react-icons/bs";
-import { LuHistory } from "react-icons/lu";
-import { AiOutlineTeam } from "react-icons/ai";
-import { CiLogout } from "react-icons/ci";
-import { useDispatch } from "react-redux";
+import { LuLayoutDashboard } from "react-icons/lu";
+import { MdContentPaste } from "react-icons/md";
+import { CgProfile } from "react-icons/cg";
+import { LuTableOfContents } from "react-icons/lu";
+import { RiLogoutCircleLine } from "react-icons/ri";
 import { logout } from "../feature/auth/userSlice";
+import { AiOutlineTeam } from "react-icons/ai";
+import { useDispatch } from "react-redux";
 
 const MainLayout = () => {
+  const [active, setActive] = useState("dashboard");
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const handLogout = () => {
+  const handleLogout = () => {
     dispatch(logout());
     navigate("/");
   };
+
   return (
-    <div>
-      <div className="sidebar">
-        <div className="user-information">
-          <img
-            src="https://static.vecteezy.com/system/resources/previews/008/442/086/original/illustration-of-human-icon-user-symbol-icon-modern-design-on-blank-background-free-vector.jpg"
-            alt="img"
-          />
-          <div>
-            <h6>Yash Rajoriya</h6>
-            <p>Student</p>
-          </div>
+    <div className="main-container">
+      <div className="main-container-1">
+        <div className="logo-info">
+          <span>
+            <MdOutlineAdminPanelSettings className="logo-icon" />
+          </span>
+          Admin
         </div>
-        <Link to="/admin">
-          <i className="bi bi-speedometer2 me-2">
-            <RxDashboard />
-          </i>{" "}
-          Dashboard
-        </Link>
-        <Link to="profile">
-          <i className="bi bi-person me-2">
-            <LuUserRoundPen />
-          </i>{" "}
-          Profile
-        </Link>
-        <Link to="interviews">
-          <i className="bi bi-journal-text me-2">
-            <BsPersonVideo3 />
-          </i>{" "}
-          My Interviews
-        </Link>
-        <Link to="history">
-          <i className="bi bi-clock-history me-2">
-            <LuHistory />
-          </i>{" "}
-          History
-        </Link>
-        <Link to="team">
-          <i className="bi bi-people me-2">
-            <AiOutlineTeam />
-          </i>{" "}
-          Our Team
-        </Link>
-        <Link to="/" onClick={handLogout}>
-          <i className="bi bi-box-arrow-right me-2">
-            <CiLogout />
-          </i>{" "}
-          Logout
-        </Link>
+        <hr className="fading-line" />
+        <ul className="root-list">
+          <Link
+            to="/admin"
+            className={`nav-btn ${active === "dashboard" ? "active" : ""}`}
+            onClick={() => setActive("dashboard")}
+          >
+            <LuLayoutDashboard className="icon" />
+            Dashboard
+          </Link>
+          <Link
+            to="profile"
+            className={`nav-btn ${active === "profile" ? "active" : ""} `}
+            onClick={() => setActive("profile")}
+          >
+            <CgProfile className="icon" />
+            Profile
+          </Link>
+          <Link
+            to="interviews"
+            className={`nav-btn ${active === "interviews" ? "active" : ""}`}
+            onClick={() => setActive("interviews")}
+          >
+            <MdContentPaste className="icon" />
+            My Interviews
+          </Link>
+          <Link
+            to="history"
+            className={`nav-btn ${active === "history" ? "active" : ""}`}
+            onClick={() => setActive("history")}
+          >
+            <LuTableOfContents className="icon" />
+            History
+          </Link>
+          <Link
+            to="team"
+            className={`nav-btn ${active === "team" ? "active" : ""}`}
+            onClick={() => setActive("team")}
+          >
+            <AiOutlineTeam className="icon" />
+            Our Team
+          </Link>
+          <Link to="/" className="nav-btn logout-btn" onClick={handleLogout}>
+            <RiLogoutCircleLine className="icon" />
+            Logout
+          </Link>
+        </ul>
       </div>
-      <div className="main-content">
+      <div className="main-container-2">
         <Outlet />
       </div>
     </div>
