@@ -11,7 +11,7 @@ const Header = (props) => {
       <header className="dashboard-header  header">
         <div>
           <div className="breadcrum-header">
-            <Link to="/admin" className="breadcrum-home-link">
+            <Link to="/dashboard" className="breadcrum-home-link">
               <GoHome className="breadcrum-home-icon" />
             </Link>
 
@@ -22,6 +22,7 @@ const Header = (props) => {
         </div>
         <div className="input-field">
           <input type="text" placeholder="Search here..." id="search-box" />
+
           <CgProfile className="header-icon" style={{ cursor: "pointer" }} />
           <IoSettingsOutline
             className="header-icon"
@@ -30,7 +31,6 @@ const Header = (props) => {
           <FaRegBell className="header-icon" style={{ cursor: "pointer" }} />
         </div>
       </header>
-      <hr className="fading-line" />
     </div>
   );
 };

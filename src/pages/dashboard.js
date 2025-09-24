@@ -5,8 +5,11 @@ import { TbWriting, TbMoodPuzzled } from "react-icons/tb";
 import { RiSpeakLine } from "react-icons/ri";
 import { MdOutlineQuiz } from "react-icons/md";
 import { CgEreader } from "react-icons/cg";
+import { useNavigate } from "react-router-dom";
 
 const Dashboard = () => {
+  const navigate = useNavigate();
+
   return (
     <div>
       <Header title="Dashboard" />
@@ -33,6 +36,9 @@ const Dashboard = () => {
           title="Quiz"
           value="00 Lessons"
           growth="0.0%"
+          onClick={() => {
+            navigate("quiz");
+          }}
           icon={<MdOutlineQuiz className="card-icon" size={32} />}
         />
         <Card

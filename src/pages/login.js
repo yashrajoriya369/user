@@ -59,7 +59,7 @@ const Login = () => {
             </div>
             <form onSubmit={formik.handleSubmit} className="auth-form">
               <div className="form-group">
-                <label htmlFor="login-email">Email</label>
+                <label htmlFor="login-email" style={{fontSize: "18px", fontWeight: "400"}}>Email</label>
                 <input
                   name="email"
                   type="email"
@@ -76,7 +76,7 @@ const Login = () => {
               </div>
 
               <div className="form-group">
-                <label htmlFor="login-password">Password</label>
+                <label htmlFor="login-password" style={{fontSize: "18px", fontWeight: "400"}}>Password</label>
                 <div className="password-toggle">
                   <input
                     name="password"
@@ -112,7 +112,7 @@ const Login = () => {
               </button>
 
               <div className="auth-footer">
-                <Link to="forgot-password">Forgot your password?</Link>
+                <Link to="forgot-password" style={{fontSize: "18px", fontWeight: "400"}}>Forgot your password?</Link>
               </div>
 
               <div className="divider">
@@ -120,14 +120,14 @@ const Login = () => {
               </div>
 
               <div className="auth-footer">
-                <Link to="/create-account">Don't have an account?</Link>
+                <Link to="/create-account" style={{fontSize: "18px", fontWeight: "400"}}>Don't have an account?</Link>
               </div>
 
               <div className="social-login">
-                <button className="social-btn google">
+                <button className="social-btn google" style={{fontSize: "18px", fontWeight: "400"}}>
                   <i className="fab fa-google"></i> Google
                 </button>
-                <button className="social-btn linkedin">
+                <button className="social-btn linkedin" style={{fontSize: "18px", fontWeight: "400"}}>
                   <i className="fab fa-linkedin"></i> LinkedIn
                 </button>
               </div>

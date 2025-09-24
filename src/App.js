@@ -12,6 +12,7 @@ import ForgotPassword from "./pages/forgotPassword";
 import ResetPassword from "./pages/resetPassword";
 import Terms from "./pages/terms";
 import Privacy from "./pages/privacy";
+import Quiz from "./component/Quiz";
 
 const App = () => {
   return (
@@ -23,13 +24,14 @@ const App = () => {
         <Route path="terms-and-conditions" element={<Terms />} />
         <Route path="privacy" element={<Privacy />} />
         <Route path="create-account" element={<SignUp />} />
-        <Route path="admin" element={<MainLayout />}>
+        <Route path="dashboard" element={<MainLayout />}>
           <Route index element={<Dashboard />} />
           <Route path="profile" element={<Profile />} />
           <Route path="interviews" element={<Interviews />} />
           <Route path="history" element={<History />} />
           <Route path="team" element={<Team />} />
           <Route path="login" element={<Login />} />
+          <Route path="quiz" element={<Quiz />} />
         </Route>
       </Routes>
     </BrowserRouter>

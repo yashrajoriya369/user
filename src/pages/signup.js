@@ -79,7 +79,7 @@ const SignUp = () => {
 
           <form onSubmit={formik.handleSubmit} className="auth-form">
             <div className="form-group">
-              <label htmlFor="signup-name">Full Name</label>
+              <label htmlFor="signup-name" style={{fontSize: "18px", fontWeight: "400"}}>Full Name</label>
               <input
                 name="fullName"
                 type="text"
@@ -96,7 +96,7 @@ const SignUp = () => {
             </div>
 
             <div className="form-group">
-              <label htmlFor="signup-email">Email</label>
+              <label htmlFor="signup-email" style={{fontSize: "18px", fontWeight: "400"}}>Email</label>
               <input
                 name="email"
                 type="email"
@@ -113,7 +113,7 @@ const SignUp = () => {
             </div>
 
             <div className="form-group">
-              <label htmlFor="signup-password">Password</label>
+              <label htmlFor="signup-password" style={{fontSize: "18px", fontWeight: "400"}}>Password</label>
               <div className="password-toggle">
                 <input
                   name="password"
@@ -137,7 +137,7 @@ const SignUp = () => {
             </div>
 
             <div className="form-group">
-              <label htmlFor="signup-confirm">Confirm Password</label>
+              <label htmlFor="signup-confirm" style={{fontSize: "18px", fontWeight: "400"}}>Confirm Password</label>
               <div className="password-toggle">
                 <input
                   name="confirmPassword"
@@ -170,7 +170,7 @@ const SignUp = () => {
             </button>
 
             <div className="auth-footer">
-              <p>
+              <p style={{fontSize: "18px", fontWeight: "400"}}>
                 By signing up, you agree to our{" "}
                 <Link to="/terms-and-conditions">Terms of Service</Link> and{" "}
                 <Link to="/privacy">Privacy Policy</Link>
@@ -182,14 +182,14 @@ const SignUp = () => {
             </div>
 
             <div className="auth-footer">
-              <Link to="/">Already have an account?</Link>
+              <Link to="/" style={{fontSize: "18px", fontWeight: "400"}}>Already have an account?</Link>
             </div>
 
             <div className="social-login">
-              <button className="social-btn google">
+              <button className="social-btn google" style={{fontSize: "18px", fontWeight: "400"}}>
                 <i className="fab fa-google"></i> Google
               </button>
-              <button className="social-btn linkedin">
+              <button className="social-btn linkedin" style={{fontSize: "18px", fontWeight: "400"}}>
                 <i className="fab fa-linkedin"></i> LinkedIn
               </button>
             </div>

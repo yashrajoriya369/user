@@ -32,7 +32,7 @@ const MainLayout = () => {
         <hr className="fading-line" />
         <ul className="root-list">
           <Link
-            to="/admin"
+            to="/dashboard"
             className={`nav-btn ${active === "dashboard" ? "active" : ""}`}
             onClick={() => setActive("dashboard")}
           >
