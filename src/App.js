@@ -12,7 +12,7 @@ import ForgotPassword from "./pages/forgotPassword";
 import ResetPassword from "./pages/resetPassword";
 import Terms from "./pages/terms";
 import Privacy from "./pages/privacy";
-import Quiz from "./component/Quiz";
+import Quiz from "./pages/Quiz";
 
 const App = () => {
   return (

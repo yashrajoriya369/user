@@ -1,8 +1,8 @@
 import axios from "axios";
-import { base_url } from "../../utils/base_url";
+import { API_BASE } from "../../utils/base_url";
 
 const register = async (userData) => {
-  const response = await axios.post(`${base_url}auth/signup`, userData);
+  const response = await axios.post(`${API_BASE}auth/signup`, userData);
   if (response.data) {
     return response.data;
   }
@@ -10,7 +10,7 @@ const register = async (userData) => {
 
 const login = async (userData) => {
   try {
-    const response = await axios.post(`${base_url}auth/login`, userData);
+    const response = await axios.post(`${API_BASE}auth/login`, userData);
     // const { user, token } = response.data;
     const { token } = response.data;
     // const safeUser = {
