@@ -1,6 +1,8 @@
 import React, { useMemo, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const QuizTable = ({ quizzes, currentPage, itemsPerPage }) => {
+  const navigate = useNavigate();
   // 👇 Filter states
   const [quizIdFilter, setQuizIdFilter] = useState("");
   const [quizNameFilter, setQuizNameFilter] = useState("");
@@ -101,11 +103,8 @@ const QuizTable = ({ quizzes, currentPage, itemsPerPage }) => {
               <td>{new Date(quiz.endTime).toLocaleString()}</td>
               <td>{quiz.durationMinutes}</td>
               <td>
-                {/* <Link to={`update-quizzes/${quiz._id}`}>
-                <CiEdit className="action-btn edit-icon" />
-              </Link> */}
                 <button
-                  onClick={() => console.log("Buton Clicked")}
+                  onClick={() => navigate(`/dashboard/quizzes/${quiz._id}/instructions`)}
                   className="action-btn attempt-btn"
                 >
                   Attempt

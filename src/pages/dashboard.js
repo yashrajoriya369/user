@@ -37,7 +37,7 @@ const Dashboard = () => {
           value="00 Lessons"
           growth="0.0%"
           onClick={() => {
-            navigate("quiz");
+            navigate("quizzes");
           }}
           icon={<MdOutlineQuiz className="card-icon" size={32} />}
         />

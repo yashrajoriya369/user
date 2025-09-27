@@ -23,7 +23,7 @@ const Login = () => {
   useEffect(() => {
     if (isSuccess) {
       alert("Login successfully");
-      navigate("/admin");
+      navigate("/dashboard");
       dispatch(resetStatus());
     }
     if (isError) {

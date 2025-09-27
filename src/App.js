@@ -13,6 +13,8 @@ import ResetPassword from "./pages/resetPassword";
 import Terms from "./pages/terms";
 import Privacy from "./pages/privacy";
 import Quiz from "./pages/Quiz";
+import AttemptInstructions from "./pages/Attempt/attemptInst";
+import Attempt from "./pages/Attempt/attempt";
 
 const App = () => {
   return (
@@ -31,7 +33,13 @@ const App = () => {
           <Route path="history" element={<History />} />
           <Route path="team" element={<Team />} />
           <Route path="login" element={<Login />} />
-          <Route path="quiz" element={<Quiz />} />
+          <Route path="quizzes" element={<Quiz />} />
+          <Route
+            path="quizzes/:quizId/instructions"
+            element={<AttemptInstructions />}
+          />
+
+          <Route path="quizzes/:id/attempt" element={<Attempt />} />
         </Route>
       </Routes>
     </BrowserRouter>

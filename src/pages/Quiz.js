@@ -14,6 +14,9 @@ import {
 const Quiz = () => {
   const dispatch = useDispatch();
   const { quizzes, isLoading } = useSelector((state) => state.quiz);
+  const activeCount = quizzes.filter(
+    (quiz) => quiz.runtimeStatus === "Running"
+  ).length;
 
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(10);
@@ -28,7 +31,7 @@ const Quiz = () => {
     {
       icon: <FaRegListAlt />,
       bgColor: "#cce5ff",
-      count: 4569,
+      count: `${quizzes.length}`,
       label: "Quizzes",
       countColor: "#00cfff",
       iconBg: "#007bff",
@@ -36,7 +39,7 @@ const Quiz = () => {
     {
       icon: <FaPlay />,
       bgColor: "#f8d7da",
-      count: 0,
+      count: `${activeCount}`,
       label: "Active",
       countColor: "#dc3545",
       iconBg: "#dc3545",
@@ -60,7 +63,7 @@ const Quiz = () => {
   ];
 
   return (
-    <div style={{overflowY: "auto"}}>
+    <div style={{ overflowY: "auto" }}>
       <div className="quiz-grid">
         {cardData.map((card, index) => (
           <StatusCard key={index} {...card} />
